@@ -12,9 +12,9 @@ class Pokemon
     db.execute("INSERT INTO pokemon(name, type) VALUES (?,?)", name, type)
   end
 
-  def self.find(id, db)
-    found_poke = db.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten
-    Pokemon.new(id: found_poke[0], :name found_poke[1], :type found_poke[2], :db db)
+  def self.find(id_number, db)
+    pokemon_find = db.execute("SELECT * FROM pokemon WHERE id=?", id_number).first
+    Pokemon.new(id: pokemon_find[0], name: pokemon_find[1], type: pokemon_find[2], db: db )
   end
 
 end
